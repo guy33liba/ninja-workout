@@ -69,4 +69,4 @@ const updateWorkout = async (req, res) => {
 }
 //
 //
-export { createWorkout, getWorkouts, getworkout }
+export { createWorkout, getWorkouts, getworkout, deleteWorkout, updateWorkout }
