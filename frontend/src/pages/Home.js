@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import WorkoutDetails from "../components/WorkoutDetails"
+import WorkoutForm from "../components/WorkoutForm"
 const Home = () => {
   const [workouts, setWorkouts] = useState([])
 
@@ -25,6 +26,9 @@ const Home = () => {
                   <WorkoutDetails key={workout._id} workout={workout} />
                 </p>
               ))}
+        </div>
+        <div>
+          <WorkoutForm />
         </div>
       </div>
     </div>
