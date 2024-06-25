@@ -131,11 +131,13 @@ header a {
   background-color: var(--primary-color);
   color: white;
   font-size: 1em;
+  transition: 0.3s;
   cursor: pointer;
 }
 
 .create button:hover {
   background-color: #0e8c6c;
+  transition: 0.3s;
 }
 
 .error {
