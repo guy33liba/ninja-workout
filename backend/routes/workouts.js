@@ -10,7 +10,7 @@ workoutRoute.delete("/:id", (req, res) => {
   res.json({ mssg: "delete  Workout" })
 })
 
-workoutRoute.put("/:id", (req, res) => {
+workoutRoute.patch("/:id", (req, res) => {
   res.json({ mssg: "update  Workout" })
 })
 export default workoutRoute
