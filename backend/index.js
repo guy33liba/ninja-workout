@@ -9,10 +9,8 @@ const app = express()
 app.get("/", (req, res) => {
   res.send({ mssg: "hello ninjas!!!" })
 })
-const mongoUri =
-  "mongodb+srv://guy33liba:g33g33g33@workout.6vzljfv.mongodb.net/?retryWrites=true&w=majority&appName=workout"
 
 mongoose.connect(process.env.mongoUri).then(() => {
   console.log("mongo connect")
-  app.listen(4000, console.log("i love you 4000"))
+  app.listen(process.env.port, console.log("i love you 4000"))
 })
