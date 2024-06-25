@@ -1,11 +1,11 @@
 import axios from "axios"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import WorkoutDetails from "../components/WorkoutDetails"
 import WorkoutForm from "../components/WorkoutForm"
-import useWorkoutsContext from "../hooks/useWorkoutsContext"
-
+import { WorkoutContext } from "../context/WorkoutContext"
 const Home = () => {
-  const { workouts, dispatch } = useWorkoutsContext()
+  const { workouts, dispatch } = useContext(WorkoutContext)
+
   // const [workouts, setWorkouts] = useState([])
   useEffect(() => {
     const fetchWorkouts = async () => {
