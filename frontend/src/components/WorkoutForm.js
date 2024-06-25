@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const WorkoutForm = () => {
   const [title, setTitle] = useState("")
@@ -7,10 +8,10 @@ const WorkoutForm = () => {
   const [load, setLoad] = useState("")
   const [error, setError] = useState(null)
 
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError(null) // Reset error state before making the request
-
     try {
       const { data } = await axios.post("/api/workouts", {
         title,
@@ -23,6 +24,7 @@ const WorkoutForm = () => {
         setTitle("")
         setReps("")
         setLoad("")
+        navigate("/")
       }
     } catch (error) {
       setError(error.response?.data?.message || error.message)
