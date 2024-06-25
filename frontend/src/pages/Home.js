@@ -2,14 +2,17 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import WorkoutDetails from "../components/WorkoutDetails"
 import WorkoutForm from "../components/WorkoutForm"
-const Home = () => {
-  const [workouts, setWorkouts] = useState([])
+import useWorkoutsContext from "../hooks/useWorkoutsContext"
 
+const Home = () => {
+  const { workouts, dispatch } = useWorkoutsContext()
+  // const [workouts, setWorkouts] = useState([])
   useEffect(() => {
     const fetchWorkouts = async () => {
       const { data } = await axios.get("/api/workouts")
       if (data) {
-        setWorkouts(data)
+        // setWorkouts(data)
+        dispatch({ type: "SET_WORKOUTS", payload: data })
       }
     }
     fetchWorkouts()
