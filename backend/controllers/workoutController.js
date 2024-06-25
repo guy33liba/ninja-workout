@@ -2,7 +2,7 @@ import Workout from "../model/workoutSchema.js"
 import mongoose from "mongoose"
 //get all workouts
 const getWorkouts = async (req, res) => {
-  const workouts = await Workout.find({}).sort({ createAt: -1 })
+  const workouts = await Workout.find({}).sort({ createdAt: -1 })
   res.status(200).send(workouts)
 }
 //get single workout
@@ -60,7 +60,7 @@ const updateWorkout = async (req, res) => {
   const workout = await Workout.findOneAndUpdate(
     { _id: id },
 
-    { ...req.body },
+    { ...req.body }
   )
   if (!workout) {
     return res.status(404).send({ errro: "no such workout" })
