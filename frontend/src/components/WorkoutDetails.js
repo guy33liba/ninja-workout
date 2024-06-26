@@ -1,3 +1,4 @@
+import { BsFillTrashFill } from "react-icons/bs"
 import axios from "axios"
 import React, { useContext } from "react"
 import { WorkoutContext } from "../context/WorkoutContext"
@@ -18,17 +19,22 @@ const WorkoutDetails = ({ workout }) => {
 
   return (
     <div className="workout-details">
-      <h3>{workout.title}</h3>
-      <p>
-        <strong>Load (kg): </strong>
-        {workout.load}
-      </p>
-      <p>
-        <strong>Reps: </strong>
-        {workout.reps}
-      </p>
-      <p>{new Date(workout.createdAt).toLocaleDateString()}</p>
-      <button onClick={deleteWorkout}>Delete Workout</button>
+      <div>
+        <h3>{workout.title}</h3>
+        <p>
+          <strong style={{ display: "flex" }}>Load (kg): {workout.load}</strong>
+        </p>
+        <p>
+          <strong>Reps: </strong>
+          {workout.reps}
+        </p>
+        <p>{new Date(workout.createdAt).toLocaleDateString()}</p>
+      </div>
+      <div className="deleteIcon">
+        <button onClick={deleteWorkout}>
+          <BsFillTrashFill />
+        </button>
+      </div>
     </div>
   )
 }

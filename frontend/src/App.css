@@ -55,7 +55,7 @@ header a {
 }
 
 .workout-details {
-  width: 85%;
+  width: 75%;
   background-color: white;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -149,4 +149,16 @@ div.error {
 }
 .error {
   border: 1px solid rgb(238, 127, 127);
+}
+
+.deleteIcon button {
+  display: flex;
+  border-radius: 50%;
+  background-color: #52d8b6;
+  font-size:50px;
+}
+.deleteIcon {
+  position: absolute;
+  left: 47%;
+  top:16%
 }
