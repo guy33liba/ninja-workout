@@ -23,6 +23,7 @@ const WorkoutForm = () => {
         setTitle("")
         setReps("")
         setLoad("")
+        setEmptyFields([])
         dispatch({ type: "CREATE_WORKOUT", payload: data })
       }
     } catch (error) {
@@ -43,6 +44,7 @@ const WorkoutForm = () => {
           value={title}
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
+          className={emptyFields.includes("title") ? "error" : ""}
         />
 
         <label>Load (in Kg)</label>
@@ -51,6 +53,7 @@ const WorkoutForm = () => {
           value={load}
           placeholder="Load"
           onChange={(e) => setLoad(e.target.value)}
+          className={emptyFields.includes("load") ? "error" : ""}
         />
 
         <label>Reps</label>
@@ -59,6 +62,7 @@ const WorkoutForm = () => {
           value={reps}
           placeholder="Reps"
           onChange={(e) => setReps(e.target.value)}
+          className={emptyFields.includes("reps") ? "error" : ""}
         />
 
         <button type="submit">Add Workout</button>
