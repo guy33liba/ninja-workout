@@ -1,5 +1,5 @@
 import axios from "axios"
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import WorkoutDetails from "../components/WorkoutDetails"
 import WorkoutForm from "../components/WorkoutForm"
 import { WorkoutContext } from "../context/WorkoutContext"

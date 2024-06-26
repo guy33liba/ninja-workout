@@ -2,19 +2,16 @@ import React, { createContext, useReducer } from "react"
 
 export const WorkoutContext = createContext()
 
-export const workoutReducer = (state, action) => {
+const workoutReducer = (state, action) => {
   switch (action.type) {
     case "SET_WORKOUTS":
-      return { ...state, workouts: action.payload }
+      return { workouts: action.payload }
     case "CREATE_WORKOUT":
-      return { ...state, workouts: [action.payload, ...state.workouts] }
+      return { workouts: [action.payload, ...state.workouts] }
     case "DELETE_WORKOUT":
       return {
-        ...state,
         workouts: state.workouts.filter((workout) => workout._id !== action.payload),
       }
-    case "CLEAR_WORKOUT":
-      return { ...state, workouts: null }
     default:
       return state
   }
