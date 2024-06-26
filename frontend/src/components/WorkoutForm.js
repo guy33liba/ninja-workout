@@ -12,30 +12,7 @@ const WorkoutForm = () => {
     e.preventDefault()
     setError(null) // Reset error state before making the request
     const workout = { title, load, reps }
-    // try {
-    //   const response = await fetch("/api/workouts", {
-    //     method: "POST",
-    //     workout,
-    //     headers: { "content-type": "application/json" },
-    //   })
-    //   const json = await response.json()
-    //   if (!response.ok) {
-    //     setError(json.error)
-    //     setEmptyFields(json.emptyFields)
-    //   }
-
-    // if (response.ok) {
-    //   // Clear form inputs
-    //   setTitle("")
-    //   setReps("")
-    //   setLoad("")
-    //   setEmptyFields([])
-    //   dispatch({ type: "CREATE_WORKOUT", payload: json })
-    // }
-    // } catch (error) {
-    //   setError(error.response?.data?.message || error.message)
-    //   console.error("Error submitting workout:", error)
-    // }
+    
     try {
       const response = await axios.post("/api/workouts", workout)
       console.log(response)
