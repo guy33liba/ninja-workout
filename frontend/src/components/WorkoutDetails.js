@@ -7,15 +7,12 @@ const WorkoutDetails = ({ workout }) => {
 
   const deleteWorkout = async () => {
     try {
-      {
-        dispatch({
-          type: "DELETE_WORKOUT",
-          payload: workout._id,
-        })
+      const response = await axios.delete(`api/workouts/${workout._id}`)
+      if (response.status === 200) {
+        dispatch({ type: "DELETE_WORKOUT", payload: response.data })
       }
     } catch (error) {
       console.error("Error deleting workout:", error)
-      // Optionally, set an error state or show user feedback here
     }
   }
 

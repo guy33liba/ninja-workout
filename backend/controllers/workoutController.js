@@ -38,7 +38,7 @@ const createWorkout = async (req, res) => {
     emptyFields.push("reps")
   }
   if (emptyFields.length > 0) {
-    return res.status(404).send({ errror: "please fill in all the fields", emptyFields })
+    return res.status(400).send({ errror: "please fill in all the fields", emptyFields })
   }
   try {
     const workout = await Workout({ title, reps, load })
@@ -55,11 +55,18 @@ const createWorkout = async (req, res) => {
 //delete existing workout
 const deleteWorkout = async (req, res) => {
   const { id } = req.params
-  const workout = await Workout.findOneAndDelete({ _id: id })
-  if (!workout) {
-    return res.status(404).send({ errro: "no such workout" })
+
+  try {
+    const workout = await Workout.findOneAndDelete({ _id: id })
+
+    if (!workout) {
+      return res.status(404).json({ error: "No such workout" })
+    }
+
+    res.status(200).json(workout)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
-  res.status(201).send(workout)
 }
 //
 //
