@@ -27,6 +27,7 @@ const WorkoutForm = () => {
       }
     } catch (error) {
       setError(error.response?.data?.message || error.message)
+      setEmptyFields(emptyFields?.response?.data)
       console.error("Error submitting workout:", error)
     }
   }
