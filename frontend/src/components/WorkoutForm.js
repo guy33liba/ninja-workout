@@ -12,29 +12,46 @@ const WorkoutForm = () => {
     e.preventDefault()
     setError(null) // Reset error state before making the request
     const workout = { title, load, reps }
-    try {
-      const response = await fetch("/api/workouts", {
-        method: "POST",
-        workout,
-        headers: { "content-type": "application/json" },
-      })
-      const json = await response.json()
-      if (!response.ok) {
-        setError(json.error)
-        setEmptyFields(json.emptyFields)
-      }
+    // try {
+    //   const response = await fetch("/api/workouts", {
+    //     method: "POST",
+    //     workout,
+    //     headers: { "content-type": "application/json" },
+    //   })
+    //   const json = await response.json()
+    //   if (!response.ok) {
+    //     setError(json.error)
+    //     setEmptyFields(json.emptyFields)
+    //   }
 
-      if (response.ok) {
-        // Clear form inputs
-        setTitle("")
-        setReps("")
-        setLoad("")
-        setEmptyFields([])
-        dispatch({ type: "CREATE_WORKOUT", payload: json })
-      }
-    } catch (error) {
-      setError(error.response?.data?.message || error.message)
-      console.error("Error submitting workout:", error)
+    // if (response.ok) {
+    //   // Clear form inputs
+    //   setTitle("")
+    //   setReps("")
+    //   setLoad("")
+    //   setEmptyFields([])
+    //   dispatch({ type: "CREATE_WORKOUT", payload: json })
+    // }
+    // } catch (error) {
+    //   setError(error.response?.data?.message || error.message)
+    //   console.error("Error submitting workout:", error)
+    // }
+    try {
+      const response = await axios.post("/api/workouts", workout)
+      console.log(response)
+      dispatch({ type: "CREATE_WORKOUT", payload: response.data })
+      setTitle("")
+      setReps("")
+      setLoad("")
+      setEmptyFields([])
+    } catch (err) {
+      const {
+        response: {
+          data: { error, emptyFields },
+        },
+      } = err
+      setEmptyFields(emptyFields)
+      setError(error)
     }
   }
 
@@ -49,7 +66,7 @@ const WorkoutForm = () => {
           value={title}
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
-          className={emptyFields.includes(title) ? "error" : ""}
+          className={emptyFields.includes("title") ? "error" : ""}
         />
 
         <label>Load (in Kg)</label>
@@ -58,7 +75,7 @@ const WorkoutForm = () => {
           value={load}
           placeholder="Load"
           onChange={(e) => setLoad(e.target.value)}
-          className={emptyFields.includes(load) ? "error" : ""}
+          className={emptyFields.includes("load") ? "error" : ""}
         />
 
         <label>Reps</label>
@@ -67,7 +84,7 @@ const WorkoutForm = () => {
           value={reps}
           placeholder="Reps"
           onChange={(e) => setReps(e.target.value)}
-          className={emptyFields.includes(reps) ? "error" : ""}
+          className={emptyFields.includes("reps") ? "error" : ""}
         />
 
         <button type="submit">Add Workout</button>
