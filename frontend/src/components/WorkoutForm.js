@@ -6,26 +6,31 @@ const WorkoutForm = () => {
   const [title, setTitle] = useState("")
   const [reps, setReps] = useState("")
   const [load, setLoad] = useState("")
-  const [error, setError] = useState(null)
+  const [error, setError] = useState("")
   const [emptyFields, setEmptyFields] = useState([])
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError(null) // Reset error state before making the request
+    const workout = { title, load, reps }
     try {
-      const { data } = await axios.post("/api/workouts", {
-        title,
-        reps,
-        load,
+      const response = await fetch("/api/workouts", {
+        method: "POST",
+        workout,
+        headers: { "content-type": "application/json" },
       })
-      if (data.emptyFields) setEmptyFields(data.emptyFields)
+      const json = await response.json()
+      if (!response.ok) {
+        setError(json.error)
+        setEmptyFields(json.emptyFields)
+      }
 
-      if (data) {
+      if (response.ok) {
         // Clear form inputs
         setTitle("")
         setReps("")
         setLoad("")
         setEmptyFields([])
-        dispatch({ type: "CREATE_WORKOUT", payload: data })
+        dispatch({ type: "CREATE_WORKOUT", payload: json })
       }
     } catch (error) {
       setError(error.response?.data?.message || error.message)
@@ -44,7 +49,7 @@ const WorkoutForm = () => {
           value={title}
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
-          // className={emptyFields.includes("title") ? "error" : ""}
+          className={emptyFields.includes("title") && title === "" ? "error" : ""}
         />
 
         <label>Load (in Kg)</label>
@@ -53,7 +58,7 @@ const WorkoutForm = () => {
           value={load}
           placeholder="Load"
           onChange={(e) => setLoad(e.target.value)}
-          // className={emptyFields.includes("load") ? "error" : ""}
+          className={emptyFields.includes("load") && load === "" ? "error" : ""}
         />
 
         <label>Reps</label>
@@ -62,11 +67,10 @@ const WorkoutForm = () => {
           value={reps}
           placeholder="Reps"
           onChange={(e) => setReps(e.target.value)}
-          // className={emptyFields.includes("reps") ? "error" : ""}
+          className={emptyFields.includes("reps") && reps === "" ? "error" : ""}
         />
 
         <button type="submit">Add Workout</button>
-
         {error && <div className="error">{error}</div>}
       </form>
     </div>

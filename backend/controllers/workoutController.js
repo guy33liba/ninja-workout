@@ -38,10 +38,10 @@ const createWorkout = async (req, res) => {
     emptyFields.push("reps")
   }
   if (emptyFields.length > 0) {
-    return res.status(400).send({ errror: "please fill in all the fields", emptyFields })
+    return res.status(400).send({ error: "Please fill in all the fields", emptyFields })
   }
   try {
-    const workout = await Workout({ title, reps, load })
+    const workout = new Workout({ title, reps, load })
     const newWorkout = await workout.save()
     res.status(201).json(newWorkout)
   } catch (error) {

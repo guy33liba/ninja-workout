@@ -140,9 +140,15 @@ header a {
   transition: 0.3s;
 }
 
-.error {
+div.error {
+  background-color: red;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 20px 0;
+  padding: 10px;
+}
+input.error {
   color: red;
-  margin-top: 10px;
-  text-align: center;
-  font-size: 0.9em;
+
+  border: 1px solid var(--error);
 }
