@@ -7,7 +7,7 @@ const WorkoutForm = () => {
   const [reps, setReps] = useState("")
   const [load, setLoad] = useState("")
   const [error, setError] = useState(null)
-
+  const [emptyFields, setEmptyFields] = useState([])
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError(null) // Reset error state before making the request
