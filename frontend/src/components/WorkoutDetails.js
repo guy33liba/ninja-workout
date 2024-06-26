@@ -2,7 +2,7 @@ import { BsFillTrashFill } from "react-icons/bs"
 import axios from "axios"
 import React, { useContext } from "react"
 import { WorkoutContext } from "../context/WorkoutContext"
-
+import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useContext(WorkoutContext)
 
@@ -22,17 +22,19 @@ const WorkoutDetails = ({ workout }) => {
       <div>
         <h3>{workout.title}</h3>
         <p>
-          <strong style={{ display: "flex" }}>Load (kg): {workout.load}</strong>
+          <strong>Load (kg): {workout.load}</strong>
         </p>
         <p>
           <strong>Reps: </strong>
           {workout.reps}
         </p>
-        <p>{new Date(workout.createdAt).toLocaleDateString()}</p>
+        <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
       </div>
       <div className="deleteIcon">
         <button onClick={deleteWorkout}>
-          <BsFillTrashFill />
+          <BsFillTrashFill
+            style={{ marginTop: "10px", marginLeft: "10px", marginRight: "10px" }}
+          />
         </button>
       </div>
     </div>
