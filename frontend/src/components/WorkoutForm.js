@@ -1,7 +1,8 @@
 import axios from "axios"
-import React, { useState } from "react"
-
+import React, { useContext, useState } from "react"
+import { WorkoutContext } from "../context/WorkoutContext"
 const WorkoutForm = () => {
+  const { dispatch } = useContext(WorkoutContext)
   const [title, setTitle] = useState("")
   const [reps, setReps] = useState("")
   const [load, setLoad] = useState("")
@@ -22,6 +23,7 @@ const WorkoutForm = () => {
         setTitle("")
         setReps("")
         setLoad("")
+        dispatch({ type: "CREATE_WORKOUT", payload: data })
       }
     } catch (error) {
       setError(error.response?.data?.message || error.message)
