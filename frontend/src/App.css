@@ -154,7 +154,7 @@ div.error {
 .deleteIcon button {
   display: flex;
   border-radius: 50%;
-  background-color: #52d8b6;
+  background-color: #c0c0c0a1;
   font-size:50px;
 }
 .deleteIcon {
