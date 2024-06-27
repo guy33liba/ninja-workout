@@ -1,5 +1,4 @@
-import User from "../model/userModel"
-
+import User from "../model/userModel.js"
 const loginUser = async (req, res) => {
   res.json({ mssg: "login user" })
 }
