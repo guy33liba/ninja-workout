@@ -1,5 +1,6 @@
 import Workout from "../model/workoutSchema.js"
 import mongoose from "mongoose"
+import bcrypt from "bcryptjs"
 //get all workouts
 const getWorkouts = async (req, res) => {
   const workouts = await Workout.find({}).sort({ createdAt: -1 })
