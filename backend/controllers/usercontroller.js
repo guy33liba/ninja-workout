@@ -8,6 +8,7 @@ const createToken = (_id) => {
 const loginUser = async (req, res) => {
   res.json({ mssg: "login user" })
 }
+
 const signupUser = async (req, res) => {
   const { email, password } = req.body
   try {
