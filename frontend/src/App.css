@@ -159,6 +159,9 @@ div.error {
   border-radius: 50%;
   align-content: center;
   font-size: 40px;
-
+  cursor: pointer;
 }
-
+.deleteIcon button:hover {
+  color: #0e1deb;
+  transition: 0.3s;
+}
