@@ -1,11 +1,12 @@
-import { WorkoutContext } from "../context/WorkoutContext"
+import { WorkoutsContext } from "../context/WorkoutContext"
 import { useContext } from "react"
 
-const useAuthContext = () => {
-  const context = useContext(WorkoutContext)
+export const useWorkoutsContext = () => {
+  const context = useContext(WorkoutsContext)
+
   if (!context) {
-    throw new Error("useWorkoutsContext must be used within a AuthContextProvider")
+    throw Error("useWorkoutsContext must be used inside an WorkoutsContextProvider")
   }
+
   return context
 }
-export default useAuthContext
