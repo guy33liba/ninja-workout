@@ -18,21 +18,26 @@ header {
 }
 
 header .container {
-  max-width: 1400px;
-  margin: 0 auto;
+  margin: 0 0 0 50px;
+  width: 100vw;
   padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
-
 header a {
   color: white;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1em;
 }
-
+.loginSignup {
+  display: flex;
+  margin-left: 60%;
+  justify-content: space-between;
+}
+.loginSignup h1 {
+  margin-left: 50px;
+}
 .pages {
   max-width: 1400px;
   padding: 20px;
@@ -48,10 +53,6 @@ header a {
   display: grid;
   grid-template-columns: 2fr 1fr; /* Adjust grid template columns for layout */
   gap: 30px; /* Adjust gap between sections */
-}
-
-.workouts {
-  /* Styling for the workouts list */
 }
 
 .workout-details {
@@ -165,4 +166,129 @@ div.error {
 .deleteIcon button:hover {
   color: #0e1deb;
   transition: 0.3s;
+}
+.login {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.login h3 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.login label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.login input[type="email"],
+.login input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.login input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login input[type="submit"]:hover {
+  background-color: #218838;
+}
+.login button {
+  font-size: 20px;
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 20px;
+}
+/* Signup.css */
+
+.signup {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.signup h3 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.signup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.signup input[type="email"],
+.signup input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.signup button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 20px;
+}
+
+.signup button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.signup button:not(:disabled):hover {
+  background-color: #218838;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
 }
