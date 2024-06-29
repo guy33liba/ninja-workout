@@ -1,13 +1,12 @@
 import React, { useState } from "react"
-import { useSignup } from "../hooks/useSignup"
-
+import { useLogin } from "../hooks/useLogin"
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const { signup, error, isLoading } = useSignup()
+  const { login, error, isLoading } = useLogin()
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await signup(email, password)
+    await login(email, password)
     setEmail("")
     setPassword("")
   }
