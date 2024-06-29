@@ -7,7 +7,44 @@ const userSchema = new mongoose.Schema({
 })
 
 // static signup method
-userSchema.statics.signup = async function (email, password) {
+// userSchema.statics.signup = async function (email, password) {
+//   if (!email || !password) {
+//     throw new Error("all Fields must be filled")
+//   }
+//   if (!validator.isEmail(email)) {
+//     throw Error("Eamil is not valid")
+//   }
+//   if (!validator.isStrongPassword(password)) {
+//     throw new Error("Password must be strong")
+//   }
+
+//   const exists = await this.findOne({ email })
+
+//   if (exists) {
+//     throw new Error("Email Already in Use")
+//   }
+
+//   const salt = await bcrypt.genSalt(10)
+//   const hash = await bcrypt.hash(password, salt)
+
+//   const user = await this.create({ email, password: hash })
+//   return user
+// }
+
+// userSchema.statics.login = async function (email, password) {
+//   if (!email || !password) {
+//     throw new Error("all Fields must be filled")
+//   }
+//   const user = await this.findOne({ email })
+
+//   if (!user) {
+//     throw new Error("Incorrect email ")
+//   }
+//   const match = await bcrypt.compare(password, user.password)
+//   if (!match) throw new Error("Incorrect password")
+//   return user
+// }
+const signup = async function (email, password) {
   if (!email || !password) {
     throw new Error("all Fields must be filled")
   }
@@ -18,7 +55,7 @@ userSchema.statics.signup = async function (email, password) {
     throw new Error("Password must be strong")
   }
 
-  const exists = await this.findOne({ email })
+  const exists = await User.findOne({ email })
 
   if (exists) {
     throw new Error("Email Already in Use")
@@ -31,11 +68,11 @@ userSchema.statics.signup = async function (email, password) {
   return user
 }
 
-userSchema.statics.login = async function (email, password) {
+const login = async function (email, password) {
   if (!email || !password) {
     throw new Error("all Fields must be filled")
   }
-  const user = await this.findOne({ email })
+  const user = await User.findOne({ email })
 
   if (!user) {
     throw new Error("Incorrect email ")
@@ -46,4 +83,4 @@ userSchema.statics.login = async function (email, password) {
 }
 const User = mongoose.model("User", userSchema)
 
-export default User
+export {User, signup, login }

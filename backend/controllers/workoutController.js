@@ -1,6 +1,5 @@
 import Workout from "../model/workoutSchema.js"
 import mongoose from "mongoose"
-import bcrypt from "bcryptjs"
 //get all workouts
 const getWorkouts = async (req, res) => {
   const workouts = await Workout.find({}).sort({ createdAt: -1 })
@@ -82,7 +81,7 @@ const updateWorkout = async (req, res) => {
   const workout = await Workout.findOneAndUpdate(
     { _id: id },
 
-    { ...req.body },
+    { ...req.body }
   )
   if (!workout) {
     return res.status(404).send({ errro: "no such workout" })
