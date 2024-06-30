@@ -1,20 +1,34 @@
 import axios from "axios"
 import React, { useContext, useState } from "react"
 import { WorkoutContext } from "../context/WorkoutContext"
+import { useAuthContext } from "../hooks/useAuthContext"
+
 const WorkoutForm = () => {
   const { dispatch } = useContext(WorkoutContext)
+  const { user } = useAuthContext()
+
   const [title, setTitle] = useState("")
   const [reps, setReps] = useState("")
   const [load, setLoad] = useState("")
   const [error, setError] = useState("")
   const [emptyFields, setEmptyFields] = useState([])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError(null) // Reset error state before making the request
+    if (!user) {
+      setError("You must be logged in")
+      return
+    }
     const workout = { title, load, reps }
-    
+
     try {
-      const response = await axios.post("/api/workouts", workout)
+      const response = await axios.post("/api/workouts", workout, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
       console.log(response)
       dispatch({ type: "CREATE_WORKOUT", payload: response.data })
       setTitle("")
