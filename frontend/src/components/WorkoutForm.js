@@ -26,7 +26,7 @@ const WorkoutForm = () => {
       const response = await axios.post("/api/workouts", workout, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          authorization: `Bearer ${user.token}`,
         },
       })
       console.log(response)

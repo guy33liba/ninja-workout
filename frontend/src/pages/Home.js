@@ -1,5 +1,5 @@
 import axios from "axios"
-import React, { useContext, useEffect, useLayoutEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import WorkoutDetails from "../components/WorkoutDetails"
 import WorkoutForm from "../components/WorkoutForm"
 import { WorkoutContext } from "../context/WorkoutContext"
@@ -10,8 +10,10 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       const { data } = await axios.get("/api/workouts", {
-        "content-type": "application/json",
-        header: { Authorization: `Bearer${user.token}` },
+        headers: {
+          authorization: `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        },
       })
 
       if (data) {

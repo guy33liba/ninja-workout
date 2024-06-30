@@ -13,7 +13,7 @@ const WorkoutDetails = ({ workout }) => {
         return
       }
       const response = await axios.delete(`api/workouts/${workout._id}`, {
-        headers: { Authorization: `Bearer ${user.token}` },
+        headers: { authorization: `Bearer ${user.token}` },
       })
       if (response.status === 200) {
         dispatch({ type: "DELETE_WORKOUT", payload: response.data })

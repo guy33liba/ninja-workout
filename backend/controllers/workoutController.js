@@ -3,9 +3,9 @@ import mongoose from "mongoose"
 //get all workouts
 const getWorkouts = async (req, res) => {
   const workouts = await Workout.find({}).sort({ createdAt: -1 })
-  res.status(200).send(workouts)
+
+  res.status(200).json(workouts)
 }
-//get single workout
 
 const getworkout = async (req, res) => {
   const { id } = req.params

@@ -14,6 +14,6 @@ workoutRoute.get("/:id", getworkout)
 
 workoutRoute.post("/", createWorkout)
 workoutRoute.delete("/:id", deleteWorkout)
-
+ 
 workoutRoute.patch("/:id", updateWorkout)
 export default workoutRoute
