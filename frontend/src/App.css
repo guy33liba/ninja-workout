@@ -32,7 +32,7 @@ header a {
 }
 .loginSignup {
   display: flex;
-  margin-left: 60%;
+  margin-left: 50%;
   justify-content: space-between;
 }
 .loginSignup h1 {
