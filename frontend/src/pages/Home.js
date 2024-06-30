@@ -7,15 +7,14 @@ import { useAuthContext } from "../hooks/useAuthContext"
 const Home = () => {
   const { workouts, dispatch } = useContext(WorkoutContext)
   const { user } = useAuthContext()
-  // const [workouts, setWorkouts] = useState([])
   useEffect(() => {
     const fetchWorkouts = async () => {
       const { data } = await axios.get("/api/workouts", {
         "content-type": "application/json",
         header: { Authorization: `Bearer${user.token}` },
       })
+
       if (data) {
-        // setWorkouts(data)
         dispatch({ type: "SET_WORKOUTS", payload: data })
       }
     }
