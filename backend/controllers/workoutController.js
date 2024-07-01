@@ -41,7 +41,9 @@ const createWorkout = async (req, res) => {
     return res.status(400).send({ error: "Please fill in all the fields", emptyFields })
   }
   try {
-    const workout = new Workout({ title, reps, load })
+    const user_id = req.user._id
+    const workout = new Workout({ title, reps, load, user_id })
+
     const newWorkout = await workout.save()
     res.status(201).json(newWorkout)
   } catch (error) {
@@ -81,7 +83,7 @@ const updateWorkout = async (req, res) => {
   const workout = await Workout.findOneAndUpdate(
     { _id: id },
 
-    { ...req.body }
+    { ...req.body },
   )
   if (!workout) {
     return res.status(404).send({ errro: "no such workout" })
