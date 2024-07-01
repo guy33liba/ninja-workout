@@ -15,15 +15,15 @@ const Navbar = () => {
           <h1>Workout Buddy</h1>
         </Link>
 
+        <nav>
+          {user !== null && (
+            <div>
+              <span>{user.email}</span>
+              <button onClick={handleClick}>Log out</button>
+            </div>
+          )}
+        </nav>
         <div className="loginSignup">
-          <nav>
-            {user !== null && (
-              <div>
-                <span>{user.email}</span>
-                <button onClick={handleClick}>Log out</button>
-              </div>
-            )}
-          </nav>
           <Link to="/login">
             <h1>Log in</h1>
           </Link>

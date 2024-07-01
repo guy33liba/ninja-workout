@@ -32,8 +32,7 @@ header a {
 }
 .loginSignup {
   display: flex;
-  margin-left: 50%;
-  justify-content: space-between;
+  margin-left: 40%;
 }
 .loginSignup h1 {
   margin-left: 50px;
@@ -295,6 +294,7 @@ div.error {
 nav {
   display: flex;
   align-items: center;
+  margin-left: 20px;
 }
 nav button {
   background-color: white;
@@ -305,6 +305,7 @@ nav button {
   font-family: "Poppins";
   cursor: pointer;
   font-size: 1.5em;
+  margin-left: 20px;
 }
 form.signup,
 form.login {
