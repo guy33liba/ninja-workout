@@ -2,7 +2,7 @@ import { User } from "../model/userModel.js"
 import jwt from "jsonwebtoken"
 
 const createToken = (_id) => {
-  const token = jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "3d" })
+  const token = jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "1h" })
   return token
 }
 const loginUser = async (req, res) => {
@@ -32,7 +32,6 @@ const signupUser = async (req, res) => {
 }
 
 export { signupUser, loginUser }
-
 
 // import User from "../model/userModel.js"
 // import jwt from "jsonwebtoken"
@@ -66,4 +65,3 @@ export { signupUser, loginUser }
 //     res.status(400).json({ error: error.message }) //
 //   }
 // }
-

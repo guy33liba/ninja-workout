@@ -1,5 +1,6 @@
 import Workout from "../model/workoutSchema.js"
 import mongoose from "mongoose"
+
 //get all workouts
 const getWorkouts = async (req, res) => {
   const workouts = await Workout.find({}).sort({ createdAt: -1 })
@@ -28,26 +29,21 @@ const createWorkout = async (req, res) => {
   const { title, reps, load } = req.body
 
   let emptyFields = []
-  if (!title) {
-    emptyFields.push("title")
-  }
-  if (!load) {
-    emptyFields.push("load")
-  }
-  if (!reps) {
-    emptyFields.push("reps")
-  }
+  if (!title) emptyFields.push("title")
+  if (!load) emptyFields.push("load")
+  if (!reps) emptyFields.push("reps")
+
   if (emptyFields.length > 0) {
-    return res.status(400).send({ error: "Please fill in all the fields", emptyFields })
+    return res.status(400).json({ error: "Please fill in all the fields", emptyFields })
   }
+
   try {
     const user_id = req.user._id
     const workout = new Workout({ title, reps, load, user_id })
-
     const newWorkout = await workout.save()
     res.status(201).json(newWorkout)
   } catch (error) {
-    res.status(400).json({ error: error.message })
+    res.status(400).json({ error: error.message, emptyFields })
   }
 }
 //
@@ -83,7 +79,7 @@ const updateWorkout = async (req, res) => {
   const workout = await Workout.findOneAndUpdate(
     { _id: id },
 
-    { ...req.body },
+    { ...req.body }
   )
   if (!workout) {
     return res.status(404).send({ errro: "no such workout" })
