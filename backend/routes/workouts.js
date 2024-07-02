@@ -7,6 +7,7 @@ import {
   updateWorkout,
 } from "../controllers/workoutController.js"
 import requireAuth from "../middleware/requireAuth.js"
+
 const workoutRoute = express.Router()
 
 workoutRoute.use(requireAuth)

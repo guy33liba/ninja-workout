@@ -17,5 +17,5 @@ app.use("/api/user", userRoutes)
 
 mongoose.connect(process.env.mongoUri).then(() => {
   console.log("mongo connect")
-  app.listen(process.env.port, console.log("i love you 4000"))
+  app.listen(process.env.port, console.log("i am  4000"))
 })
